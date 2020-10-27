@@ -1,0 +1,95 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>코더스아이티 미션</title>
+	<meta name="viewport" content="width=device-width, user-scalable=no">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href="/bootstrap/css/bootstrap.css" />	
+	<script src="/jquery/jquery-3.4.1.min.js"></script>	
+	<script src="/bootstrap/js/bootstrap.js"></script>	    
+    <script src="/javascripts/problemList.js"/></script>    
+    <script>
+        var address = <%= address%>;
+    </script>
+</head>
+<body style="width:100%; padding-left:0px; padding-right:0px; padding-bottom:0px;">
+
+	<div class="container" > 
+		<h2 class="text-center" >코더스아이티 미션</h2>
+		<h5 class="text-center" ><%=regTime%></h5>
+		<br><br>
+        <div ><h6> 이름 : <%= user.id %></h6></div>
+        <div ><h6> acmicpc ID :  <%= user.gid %></h6></div>
+		<br><br>
+        
+        <h6> <small>
+        <table class="table table-striped table-hover" style="text-align:center; margin:auto; ">
+			<thead>
+				<tr>
+				  <th scope="col">유형</th>
+				  <th scope="col">과제</th>
+				  <th scope="col">완료</th>
+				</tr>
+			</thead>
+
+            <tbody>
+			
+                <% for(var i =0; i<work.length; i++) {%>
+                    <% if(i%2 == 0){  %>
+                        <tr class="table" style="cursor:pointer"  
+                    <%} else { %>
+                        <tr class="table"  style="cursor:pointer"
+                    <%}%>
+					<% if(work[i][0] == 0) { %>
+						onclick="openProblem(<%= work[i][1]%>)"><td style=" vertical-align: middle;" >알고리즘</td>
+						<td class="numberName" style=" vertical-align: middle;"><%= work[i][1]%>(<%= work[i][3]%>)</td>
+					<% }else if(work[i][0] == 1){ %>
+						><td >숙제</td>
+						<td class="numberName" style=" vertical-align: middle;"><%= work[i][1]%></td>
+					<% } %>
+                        
+						<% if(work[i][2] == true){ %>
+						<td style="padding:0px; vertical-align: middle;"> 
+						<div class="custom-control custom-checkbox" style="margin:0px">
+							<input type="checkbox" class="custom-control-input" id="customCheck" checked readonly="readonly">				
+							<label class="custom-control-label" for="switch1"></label>
+						</div>
+						</td>
+						<%}else{ %>
+							<td></td>
+						<% } %>
+                    </tr>
+                <% }%>
+            </tbody>
+        </table>
+		</small>
+        </h6>
+      
+		<br>
+		<br>
+    </div>
+	<% if(work.length<5){ %>        
+        <div style="height:100px"></div>
+    <%}%>
+	<footer class="page-footer w-100 py-4 bg-dark text-white" style="margin-top:100px;">
+		
+		<div class="container text-center">		
+
+		<h6>
+		  <small>대구광역시 수성구 청호로 85길 1 청호빌딩 3층 코더스아이티</small>
+		</h6>
+		<h6>
+		  <small>TEL : 053-719-3434</small>		
+		</h6>
+		<h6>
+		  <small>E-mail : sunguk.ryu@codersit.co.kr</small>
+		</h6>
+		<h6>
+		  <small>COPYRIGHTⒸ 2020 CODERSIT. ALL RIGHT RESERVED.</small>
+		</h6>
+		</div>
+	</footer>
+</body>
+
+</html>
+

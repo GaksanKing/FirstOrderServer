@@ -1,0 +1,92 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+	<meta name="viewport" content="width=device-width, user-scalable=no">
+    <link rel='stylesheet' href="/bootstrap/css/bootstrap.css" />	
+	<script src="/jquery/jquery-3.4.1.min.js"></script>	
+	<script src="/bootstrap/js/bootstrap.js"></script>	    
+	<script src="/javascripts/store.js"></script>	    
+</head>
+<body style="width:100%; padding-left:0px; padding-right:0px;">
+	<div class="container" > 
+		<h2 style="margin-top:50px; margin-bottom:50px;" class="text-center" >퍼스트 오더 관리자 페이지</h2>
+		<div class="row" style="height:80vh; over-flow:hidden;">
+				<div class="col-2" style="height:100px;">
+				<h6>
+					<div class="list-group small">
+					  <a style="height:30px; padding:5px;" href="#" class="list-group-item list-group-item-action list-group-item-primary text-center">MENU</a>
+					  <a style="height:30px; padding:5px; padding-left:10px;" href="/store" class="list-group-item list-group-item-action active">지점 관리</a>
+					  <a style="height:30px; padding:5px; padding-left:10px;" href="/member" class="list-group-item list-group-item-action">회원 관리</a>
+					</ul>
+				</h6>
+			</div>
+
+			<div class="col-10"  style="height:100%; overflow:auto; ">			
+				<div style="width:100%;">
+					<button id="addStore" style="height:30px; padding:0px; width:80px;" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" onclick="popup()">
+						<small>
+							지점추가
+						</small>
+					</button>
+
+					<h6>
+						<table style="margin-top:20px" class="table table-striped small">						
+							<thead>
+							<tr>
+								<th style="width:20%;" scope="col">#</th>
+								<th style="width:40%;" scope="col">이름</th>
+								<th style="width:40%;" scope="col">위치</th>						  
+							</tr>
+							</thead>
+							<tbody>
+							<% for(var i = 0; i<store.length; i++) {%>
+								<% if(store[i].hasOwnProperty('Store')){  %>
+								<tr onclick="$('#addStore').click();updateStore(<%= store[i].Store %>, '<%= store[i].Name %>' , '<%= store[i].GPS %>'); ">
+									<th scope="row"><%= store[i].Store %></th>
+									<td><%= store[i].Name %></td>
+									<td><%= store[i].GPS %></td>
+								</tr>
+								<%}%>
+							<%}%>
+							</tbody>
+						</table>
+					</h6>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content">
+		  <div class="modal-header">
+			<h5 id ="storeTitle" class="modal-title" id="exampleModalLabel">지점 추가</h5>
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			  <span aria-hidden="true">&times;</span>
+			</button>
+		  </div>
+		  <div class="modal-body">
+			<div class="input-group mb-3">
+			  <div class="input-group-prepend">
+				<span class="input-group-text" id="inputGroup-sizing-default">이름</span>
+			  </div>
+			  <input id="nameInput" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+			</div>
+			<div class="input-group mb-3">
+			  <div class="input-group-prepend">
+				<span class="input-group-text" id="inputGroup-sizing-default">위치</span>
+			  </div>
+			  <input id="gpsInput" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+			</div>
+		  </div>
+		  <div class="modal-footer">
+			<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			<button type="button" class="btn btn-primary" onclick="addStore()">Save changes</button>
+		  </div>
+		</div>
+	  </div>
+	</div>
+</body>
+
+</html>
+

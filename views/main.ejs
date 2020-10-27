@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+	<meta name="viewport" content="width=device-width, user-scalable=no">
+    <link rel='stylesheet' href="/bootstrap/css/bootstrap.css" />	
+	<script src="/bootstrap/js/popper.min.js"></script>	 
+	<script src="/jquery/jquery-3.4.1.min.js"></script>	
+	<script src="/bootstrap/js/bootstrap.js"></script>	     
+</head>
+<body style="width:100%; padding-left:0px; padding-right:0px;">
+	<div class="container" > 
+		<div class="text-center ">
+			<div style="height:600px; margin-top:200px; width:100%;" >
+				<button type="button" onclick="location.href='/store'" class="btn btn-dark btn-lg" style="width:200px;">관리자</button>
+				<br/>
+				<p>
+				<p>
+				<p>
+				<p>
+				<br/>
+				<div class="row justify-content-center">
+					<div class="col-auto h6">
+					
+						<table class="table" style="width:500px;">
+						  <thead class="thead-dark">
+							<tr>
+							  <th scope="col">#</th>
+							  <th scope="col">이름</th>
+							</tr>
+						  </thead>
+						  <tbody>
+						  	<% for(var i = 0; i<store.length; i++) {%>
+								<% if(store[i].hasOwnProperty('Store')){  %>
+									<tr onclick="location.href='/product/<%= store[i].Store%>'">
+										<th scope="row"><%= store[i].Store%></th>
+										<td><%=store[i].Name %></td>
+									</tr>
+								<%}%>
+							<%}%>							
+						  </tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</body>
+
+</html>
+

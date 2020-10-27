@@ -1,0 +1,110 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href="/bootstrap/css/bootstrap.css" />
+    <script src="/bootstrap/js/popper.min.js"></script>
+    <script src="/jquery/jquery-3.4.1.min.js"></script>
+    <script src="/bootstrap/js/bootstrap.js"></script>
+    <script src="/javascripts/getProduct.js"></script>
+    <script src="/javascripts/jquery-barcode.js"></script>
+    <style>
+        .main_round {
+            width: 400px;
+            margin-top: 20px;
+            border: 2px solid #B2CCFF;
+            border-radius: 10px 10px 10px 10px;
+        }
+
+        .back {
+            background-color: #A6A6A6;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+
+<body style="width:100%; padding-left:0px; padding-right:0px;">
+
+
+    <div class="container" style="width:100%;">
+        <h2 style="margin-top:50px; margin-bottom:50px;" class="text-center">퍼스트 오더 관리자 페이지</h2>
+        <div class="row" style="height:80vh; over-flow:hidden;">
+            <div class="col-2" style="height:100px;">
+                <h6>
+                    <div class="list-group small">
+                        <a style="height:30px; padding:5px;" href="#" class="list-group-item list-group-item-action list-group-item-primary text-center">MENU</a>
+                        <a style="height:30px; padding:5px; padding-left:10px;" href="/product/<%= storeKey %>" class="list-group-item list-group-item-action ">상품 관리</a>
+                        <a style="height:30px; padding:5px; padding-left:10px;" href="/firstorder/<%= storeKey %>" class="list-group-item list-group-item-action">퍼스트오더</a>
+						<a style="height:30px; padding:5px; padding-left:10px;" href="/firstorder/<%= storeKey %>" class="list-group-item list-group-item-action active">상품수령</a>
+                        </ul>
+                </h6>
+            </div>
+
+
+            <div class="col-10" style="text-align: center;display:inline-block; ">
+
+                <div class="input-group mb-3" style="width:500px">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">바코드입력</span>
+                    </div>
+                    <input id="barcodeInput" type="text" class="form-control" placeholder="0000000000" aria-describedby="basic-addon1">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="button" onclick="requestProduct()">검색</button>
+                    </div>
+                </div>
+
+
+                <div style="width:100%;text-align: center; display:none;" id="productInfo_div">
+                    <div class="main_round " style="text-align: center;display:inline-block;margin-bottom:30px;">
+                        <img id="productImg" />
+                    </div>
+                    <br />
+                    <div style="text-align: center;display:inline-block;">
+                        <form class="form-inline" style="margin-bottom:20px;">
+                            <div class="form-group">
+                                <label for="inputPassword6" style="font-size:15px;width:70px;">상품 이름</label>
+                                <input type="text" id="productName" class="form-control mx-sm-3" style="width:300px;" readonly>
+                            </div>
+                        </form>
+                        <form class="form-inline" style="margin-bottom:20px;">
+                            <div class="form-group">
+                                <label for="inputPassword6" style="font-size:15px; width:70px;">장소</label>
+                                <input type="text" id="store" class="form-control mx-sm-3" style="width:300px;" readonly>
+                            </div>
+                        </form>
+                        <form class="form-inline" style="margin-bottom:20px;">
+                            <div class="form-group">
+                                <label for="inputPassword6" style="font-size:15px;width:70px;">날짜</label>
+                                <input type="text" id="endTime" class="form-control mx-sm-3" style="width:300px;" readonly>
+                            </div>
+                        </form>
+                        <form class="form-inline" style="margin-bottom:20px;">
+                            <div class="form-group">
+                                <label for="inputPassword6" style="font-size:15px;width:70px;">가격</label>
+                                <input type="text" id="productCost" class="form-control mx-sm-3" style="width:300px;" readonly>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+                <div class="align-middle" style="width:100%;">
+                    <div id="bcTarget" style="margin:auto;"></div>
+                </div>
+                <h3 id="errText" style="display:none;">이미 수령된 제품입니다.</h3>
+                <button id="okbtn" type="button" class="btn btn-success" onclick="complete()" style="display:none;">수령완료</button>
+
+
+            </div>
+            <div id="noneProduct_div" style="width:60%;position:absolute; top:450px;left:50%;transform:translate(-50%, -50%);display:none;">
+                <div style="text-align:center; " class="back">
+                    <strong><label style="font-size:40px;">이미 수령된 제품입니다.</label></strong>
+                    <div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href="/bootstrap/css/bootstrap.css" />
+    <script src="/jquery/jquery-3.4.1.min.js"></script>
+
+  </head>
+  <body>
+
+    <form class="form-horizontal" id="addUserForm" name="addUserForm" >
+      <div class="card align-middle" style="width:20rem; border-radius:20px; margin:0 auto;">
+        <div class="card-title" style="margin-top:30px;">
+          <h2 class="card-title text-center" style="color:#113366;">학생 정보 추가</h2>
+        </div>
+        <div class="card-body">
+          <h5 class="form-signin-heading">학생 정보를 입력하세요</h5>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" >이름</span>
+            </div>
+            <input type="text" name="id" class="form-control"  placeholder="Name" >
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" >암호</span>
+            </div>
+            <input type="text" name="pw" class="form-control"   placeholder="Password" >
+          </div>
+          <button class="btn btn-lg btn-secondary btn-block" type="submit">추 가</button>
+        </div>
+      </div>
+    </form>
+    <br/><br/>
+    <div>
+      <table class="table table-bordered">
+        <tr class="active">
+          <td>
+            <% for(var i=0; i<data.length; ) {%>
+              <a class="userElement badge badge-light" id="<%-data[i].key%>"> [<%-data[i].key%>] <%-data[i].id%>(<%-data[i].num%>) </a>&nbsp&nbsp&nbsp&nbsp&nbsp
+              <% i++; %>
+              <% if ( i % 5 == 0) { %>
+                <br/>
+              <% } %>
+            <%}%>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div class="toast" id="toast" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-header">
+        <img src="..." class="rounded mr-2" alt="...">
+        <strong class="mr-auto">Bootstrap</strong>
+        <small class="text-muted">just now</small>
+        <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="toast-body">
+        See? Just like this.
+      </div>
+    </div>
+    <script src="/script/index.js"></script>
+  </body>
+</html>
